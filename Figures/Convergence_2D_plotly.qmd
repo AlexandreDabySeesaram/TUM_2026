@@ -1,0 +1,87 @@
+```{python}
+#| label: Greedyconvergence
+#| fig-cap: "Loss convergence"
+# 
+import plotly.graph_objects as go
+import pandas as pd
+
+import os
+
+
+
+
+
+
+# Load the CSV data
+try:
+    data = pd.read_csv("BiAngle_mono.csv")
+except:
+    data = pd.read_csv("Figures/BiAngle_mono.csv")
+# Extract data
+epochs = data['epochs'][450:]
+loss = data['Loss'][450:]
+modes = data['Modes'][450:]
+
+# Create the figure
+fig = go.Figure()
+
+# Add Loss trace
+fig.add_trace(go.Scatter(
+    x=epochs, y=loss,
+    name='Loss',
+    yaxis='y1',
+    mode='lines',
+    line=dict(color='#170f38')
+))
+
+# Add Modes trace
+fig.add_trace(go.Scatter(
+    x=epochs, y=modes,
+    visible='legendonly',
+    name='Modes',
+    yaxis='y2',
+    mode='lines',
+    line=dict(color='#3a46f5')
+))
+
+# Update layout
+fig.update_layout(
+    plot_bgcolor='rgba(0,0,0,0)',  # Remove background color
+    width=450, 
+    height=400,  
+    xaxis=dict(title='Epochs',
+        showgrid=True,
+        gridcolor='lightgray'),
+    yaxis=dict(
+        title=dict(
+            text='Loss', 
+            font=dict(color='#170f38')),
+        type='log',
+        autorange='reversed',
+        tickvals=[0.01, 0.03, 0.03, 0.04, 0.06],
+        ticktext=['-1e-2', '-3e-2', '-3e-2', '-4e-2', '-6e-2'],
+        # titlefont=dict(color='#170f38'),
+        tickfont=dict(color='#170f38'),
+        showgrid=True,
+        gridcolor='lightgray'
+    ),
+    yaxis2=dict(
+        # title='Modes',
+        title=dict(
+            text='Modes', 
+            font=dict(color='#3a46f5')),
+        overlaying='y',
+        side='right',
+        tickvals=[1, 2, 3],
+        # titlefont=dict(color='#3a46f5'),
+        tickfont=dict(color='#3a46f5')
+        
+    ),
+    legend=dict(x=1, y=0.9)
+    
+)
+
+# Show the figure
+fig.show()
+
+```
