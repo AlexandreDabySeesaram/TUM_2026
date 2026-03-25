@@ -1,7 +1,7 @@
 ---
 title: "Digital Twin of Human Lungs: Towards Real-Time Simulation and Registration of Soft Organs"
 subtitle: "TUM - ICAM 2026"
-date: 03/24/2026
+date: 03/25/2026
 author: 
     - name: Alexandre Daby-Seesaram <sup><span style="color:#a6ce39ff">[{{< iconify fa-brands:orcid >}}](https://orcid.org/0000-0002-2374-0971)</span></sup>
       email: alexandre.daby-seesaram@polytechnique.edu
